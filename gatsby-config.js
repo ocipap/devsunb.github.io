@@ -1,14 +1,15 @@
 const path = require("path");
 const pathPrefix = "/";
+const siteUrl = "https://wiki.sunb.kr";
 const siteMetadata = {
-  title: "Gatsby Starter for Gatsby Theme Primer Wiki",
-  shortName: "Wiki",
-  description:
-    "A starter that use gatsby-theme-primer-wiki",
-  twitterName: "theowenyoung",
-  imageUrl: "/graph-visualisation.jpg",
-  siteUrl: "https://demo-gatsby-starter-primer-wiki.owenyoung.com",
+  title: "선비의 지식창고",
+  shortName: "SunB Wiki",
+  description: "Vimwiki, Gatsby, Github Pages로 만든 개인 위키",
+  siteUrl,
+  imageUrl: "",
+  fbAppId: "",
 };
+
 module.exports = {
   siteMetadata,
   pathPrefix,
@@ -16,6 +17,7 @@ module.exports = {
     DEV_SSR: true,
   },
   plugins: [
+    { resolve: "gatsby-plugin-fontawesome-css" },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -27,17 +29,27 @@ module.exports = {
       resolve: "gatsby-theme-primer-wiki",
       options: {
         nav: [
-      
           {
-            title: "Github",
-            url: "https://github.com/theowenyoung/gatsby-starter-primer-wiki/",
+            title: "Latest",
+            url: `${siteUrl}/latest/`,
           },
           {
-            title: "Twitter",
-            url: "https://twitter.com/theowenyoung",
+            title: "GitHub",
+            url: "https://github.com/devsunb/",
           },
         ],
-        editUrl: "https://github.com/theowenyoung/gatsby-starter-primer-wiki/tree/main/",
+        defaultColorMode: "night",
+        editUrlText: "Edit",
+        editUrl: "https://github.com/devsunb/wiki/tree/main/",
+        lastUpdatedTransformer: (isoString) => {
+          const dateObj = new Date(isoString);
+          const date = dateObj.toLocaleString("ko-KR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+          });
+          return date;
+        },
       },
     },
     {

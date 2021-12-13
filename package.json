@@ -2,17 +2,21 @@
   "private": true,
   "name": "wiki",
   "version": "1.0.0",
-  "license": "MIT",
+  "author": {
+    "name": "Jaeseok Lee",
+    "email": "devsunb@gmail.com"
+  },
   "scripts": {
-    "develop": "gatsby develop -H 0.0.0.0",
-    "start": "gatsby develop -H 0.0.0.0",
+    "dev": "gatsby develop -H 0.0.0.0",
     "build": "gatsby build",
-    "clean": "gatsby clean",
     "serve": "gatsby serve",
-    "test": "echo test"
+    "bs": "gatsby build && gatsby serve",
+    "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "gatsby": "^3.12.0",
+    "gatsby-plugin-fontawesome-css": "~1.1.0",
     "gatsby-plugin-google-gtag": "^3.12.0",
     "gatsby-plugin-manifest": "^3.12.0",
     "gatsby-plugin-robots-txt": "^1.6.9",
