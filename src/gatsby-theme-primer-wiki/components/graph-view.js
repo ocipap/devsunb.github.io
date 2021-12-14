@@ -3,7 +3,6 @@ import { NoteGraphView, NoteGraphModel } from "note-graph";
 import { navigate } from "gatsby";
 import { useGraphData } from "../use-note-graph-data";
 import { useWindowSize } from "../use-window-size";
-import { Box } from "@primer/components";
 import { Modal } from "react-overlays";
 import styled from "styled-components";
 import { useTheme } from "@primer/components";
@@ -117,7 +116,7 @@ export default function GraphView({
     return () => {
       noteGraphView.dispose();
     };
-  }, [notes, isOpen, currentSlug, windowSize]);
+  }, [notes, isOpen, currentSlug, windowSize, colorMode]);
   if (!isOpen) {
     return null;
   }

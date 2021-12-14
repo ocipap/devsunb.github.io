@@ -1,12 +1,12 @@
 const theme = {
   fonts: {
-    normal: "'Apple SD Gothic Neo','Noto Sans KR',sans-serif",
+    normal: "'Apple SD Gothic Neo',sans-serif",
     mono: "'D2Coding', monospace",
   },
   fontWeights: {
     light: 300,
     normal: 400,
-    semibold: 500,
+    semibold: 600,
     bold: 700
   },
   colorSchemes: {

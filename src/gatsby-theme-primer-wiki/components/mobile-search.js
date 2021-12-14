@@ -10,6 +10,8 @@ import DarkButton from "./dark-button";
 import DarkTextInput from "./dark-text-input";
 import SearchResults from "./search-results";
 
+export const HEADER_HEIGHT = 66;
+
 function stateReducer(state, changes) {
   switch (changes.type) {
     case Downshift.stateChangeTypes.changeInput:
@@ -52,7 +54,7 @@ function MobileSearch({ isOpen, onDismiss, tagsGroups }) {
               as={motion.div}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0.1 } }}
               top={0}
               left={0}
               right={0}
@@ -92,6 +94,7 @@ function MobileSearch({ isOpen, onDismiss, tagsGroups }) {
                 >
                   <Box
                     display="flex"
+                    height={HEADER_HEIGHT}
                     bg="header.bg"
                     color="header.text"
                     p={3}

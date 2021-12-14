@@ -6,8 +6,8 @@ const siteMetadata = {
   shortName: "SunB Wiki",
   description: "Vimwiki, Gatsby, Github Pages로 만든 개인 위키",
   siteUrl,
-  imageUrl: "",
   fbAppId: "",
+  imageUrl: "",
 };
 
 module.exports = {
@@ -17,17 +17,21 @@ module.exports = {
     DEV_SSR: true,
   },
   plugins: [
+    { resolve: "gatsby-plugin-image" },
+    { resolve: "gatsby-plugin-sharp" },
+    { resolve: "gatsby-transformer-sharp" },
     { resolve: "gatsby-plugin-fontawesome-css" },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
-        path: `./content`,
+        path: "./content",
       },
     },
     {
       resolve: "gatsby-theme-primer-wiki",
       options: {
+        icon: path.resolve(__dirname, "static/logo.png"),
         nav: [
           {
             title: "Latest",
@@ -58,13 +62,13 @@ module.exports = {
         name: siteMetadata.title,
         short_name: siteMetadata.shortName,
         start_url: pathPrefix,
-        background_color: `#f7f0eb`,
-        display: `standalone`,
-        icon: path.resolve(__dirname, "./static/logo.png"),
+        background_color: "#f7f0eb",
+        display: "standalone",
+        icon: path.resolve(__dirname, "static/logo.png"),
       },
     },
     {
-      resolve: `gatsby-plugin-sitemap`,
+      resolve: "gatsby-plugin-sitemap",
     },
     {
       resolve: "gatsby-plugin-robots-txt",

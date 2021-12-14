@@ -18,8 +18,7 @@ import GraphButton from "./graph-button";
 import useThemeConfig from "../use-theme-config";
 import { useTheme } from "@primer/components";
 import components from "./mdx-components";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import themeGet from "@styled-system/theme-get";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const HEADER_HEIGHT = 66;
 
@@ -35,12 +34,10 @@ function Header({
     theme.breakpoints[2]
   );
   const [isGraphOpen, setIsGraphOpen] = React.useState(false);
-
   const [isMobileSearchOpen, setIsMobileSearchOpen] = React.useState(false);
   const { siteMetadata } = useSiteMetadata();
   const themeConfig = useThemeConfig();
   const primerNavItems = themeConfig.nav;
-  const image = getImage(themeConfig.icon);
   return (
     <Box top={0} zIndex={1} position="sticky">
       <Box
@@ -54,12 +51,12 @@ function Header({
       >
         <Box display="flex" alignItems="center">
           <Link as={GatsbyLink} to="/" color="header.logo" mr={3}>
-            {themeConfig.icon ? (
+            {themeConfig.icon.childImageSharp ? (
               <GatsbyImage
                 imgStyle={{
                   borderRadius: "9999999px",
                 }}
-                image={image}
+                image={themeConfig.icon.childImageSharp.gatsbyImageData}
                 alt="logo"
               />
             ) : (
@@ -68,16 +65,13 @@ function Header({
           </Link>
 
           {siteMetadata.shortName ? (
-            <>
-              <Link
-                as={GatsbyLink}
-                to="/"
-                color="header.logo"
-                fontFamily={themeGet("fonts.mono")}
-              >
-                {siteMetadata.shortName}
-              </Link>
-            </>
+            <Link
+              as={GatsbyLink}
+              to="/"
+              color="header.logo"
+            >
+              {siteMetadata.shortName}
+            </Link>
           ) : null}
 
           {isSearchEnabled ? (

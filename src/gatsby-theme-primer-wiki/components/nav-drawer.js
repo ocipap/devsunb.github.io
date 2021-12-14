@@ -11,7 +11,6 @@ import NavItems from "./nav-items";
 import useThemeConfig from "../use-theme-config";
 import { SunIcon, MoonIcon } from "@primer/octicons-react";
 import components from "./mdx-components";
-import themeGet from "@styled-system/theme-get";
 
 export function useNavDrawerState(breakpoint) {
   // Handle string values from themes with units at the end
@@ -74,30 +73,30 @@ function NavDrawer({ isOpen, onDismiss, location, sidebarItems }) {
               pl={4}
               pr={3}
               alignItems="center"
-              justifyContent="justify-content"
+              justifyContent="space-between"
             >
-              <Link as={GatsbyLink} to="/" color="inherit" fontFamily={themeGet("fonts.mono")}>
+              <Link as={GatsbyLink} to="/" color="#ffffff">
                 {siteMetadata.title}
               </Link>
+              <Box pl={4} pr={3} display="flex" justifyContent="flex-end">
+                <DarkButton
+                  aria-label="Theme"
+                  onClick={() =>
+                    setColorMode(resolvedColorMode === "day" ? "night" : "day")
+                  }
+                  ml={3}
+                >
+                  {resolvedColorMode === "day" ? (
+                    <SunIcon />
+                  ) : (
+                    <MoonIcon></MoonIcon>
+                  )}
+                </DarkButton>
+              </Box>
               <DarkButton aria-label="Close" onClick={onDismiss}>
                 <XIcon />
               </DarkButton>
             </Box>
-          </Box>
-          <Box pl={4} pr={3} display="flex" justifyContent="flex-end">
-            <DarkButton
-              aria-label="Theme"
-              onClick={() =>
-                setColorMode(resolvedColorMode === "day" ? "night" : "day")
-              }
-              ml={3}
-            >
-              {resolvedColorMode === "day" ? (
-                <SunIcon />
-              ) : (
-                <MoonIcon></MoonIcon>
-              )}
-            </DarkButton>
           </Box>
           <Box display="flex" flexDirection="column">
             <PrimerNavItems items={primerNavItems} />

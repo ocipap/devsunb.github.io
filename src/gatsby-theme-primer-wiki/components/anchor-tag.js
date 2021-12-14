@@ -119,7 +119,7 @@ const AnchorTag = ({
         href={href}
         title={title}
       >
-        <i class="fas fa-external-link-alt"></i>{restProps.children}
+        <i className="fas fa-external-link-alt"></i>{restProps.children}
       </Link>
     ) : (
       <Link {...restProps} as={GatsbyLink} to={href} title={title}>

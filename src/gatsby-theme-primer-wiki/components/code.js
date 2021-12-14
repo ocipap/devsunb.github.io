@@ -6,7 +6,6 @@ import vsDarkTheme from "../vs-dark";
 import React from "react";
 import ClipboardCopy from "./clipboard-copy";
 import LiveCode from "./live-code";
-import useThemeConfig from "../use-theme-config";
 import { useTheme } from "@primer/components";
 import themeGet from "@styled-system/theme-get";
 

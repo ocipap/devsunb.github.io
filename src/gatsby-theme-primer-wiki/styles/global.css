@@ -1,8 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@font-face {
+  font-family: 'Apple SD Gothic Neo';
+  font-weight: 300;
+  src: url('../fonts/AppleSDGothicNeoL.eot') format('embedded-opentype'),
+  url('../fonts/AppleSDGothicNeoL.woff2') format('woff2'),
+  url('../fonts/AppleSDGothicNeoL.woff') format('woff'),
+  url('../fonts/AppleSDGothicNeoL.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Apple SD Gothic Neo';
+  font-weight: 400;
+  src: url('../fonts/AppleSDGothicNeoR.eot') format('embedded-opentype'),
+  url('../fonts/AppleSDGothicNeoR.woff2') format('woff2'),
+  url('../fonts/AppleSDGothicNeoR.woff') format('woff'),
+  url('../fonts/AppleSDGothicNeoR.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Apple SD Gothic Neo';
+  font-weight: 600;
+  src: url('../fonts/AppleSDGothicNeoSB.eot') format('embedded-opentype'),
+  url('../fonts/AppleSDGothicNeoSB.woff2') format('woff2'),
+  url('../fonts/AppleSDGothicNeoSB.woff') format('woff'),
+  url('../fonts/AppleSDGothicNeoSB.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Apple SD Gothic Neo';
+  font-weight: 700;
+  src: url('../fonts/AppleSDGothicNeoB.eot') format('embedded-opentype'),
+  url('../fonts/AppleSDGothicNeoB.woff2') format('woff2'),
+  url('../fonts/AppleSDGothicNeoB.woff') format('woff'),
+  url('../fonts/AppleSDGothicNeoB.ttf') format('truetype');
+}
 @import url('//cdn.jsdelivr.net/gh/wan2land/d2coding/d2coding-full.css');
 
 html {
-  font-family: 'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  font-family: 'Apple SD Gothic Neo',sans-serif;
 }
 body {
   overflow-wrap: break-word;
@@ -57,9 +88,7 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -82,3 +111,4 @@ td,
 th {
   padding: 0;
 }
+
