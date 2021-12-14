@@ -20,3 +20,12 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: gh-pages
           skip-publish: false
+      - name: build result to slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{job.status}}
+          fields: repo,message,commit,author,eventName,ref,workflow,job,took
+          author_name: GitHub Action
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
