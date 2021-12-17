@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://wiki.sunb.kr/sitemap.xml
+Host: https://wiki.sunb.kr

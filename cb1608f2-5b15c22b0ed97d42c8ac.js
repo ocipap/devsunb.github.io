@@ -1,0 +1,3 @@
+/*! For license information please see cb1608f2-5b15c22b0ed97d42c8ac.js.LICENSE.txt */
+"use strict";(self.webpackChunkdevsunb_github_io=self.webpackChunkdevsunb_github_io||[]).push([[523],{88014:function(a,n,e){e.d(n,{Xjp:function(){return i}});var i={prefix:"fas",iconName:"external-link-alt",icon:[512,512,[],"f35d","M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"]}}}]);
+//# sourceMappingURL=cb1608f2-5b15c22b0ed97d42c8ac.js.map
