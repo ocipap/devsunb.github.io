@@ -4,9 +4,8 @@ import React from "react";
 import LastUpdated from "./last-updated";
 import useThemeConfig from "../use-theme-config";
 
-function PageFooter({ editUrl, lastUpdated }) {
+function PageFooter({ editUrl, blameUrl, lastUpdated }) {
   const data = useThemeConfig();
-
   return editUrl || lastUpdated ? (
     <Box
       borderStyle="solid"
@@ -24,7 +23,7 @@ function PageFooter({ editUrl, lastUpdated }) {
             {data.editUrlText}
           </Link>
         ) : null}
-        {lastUpdated && <LastUpdated lastUpdated={lastUpdated}></LastUpdated>}
+        {lastUpdated && <LastUpdated blameUrl={blameUrl} lastUpdated={lastUpdated}></LastUpdated>}
       </Box>
     </Box>
   ) : null;

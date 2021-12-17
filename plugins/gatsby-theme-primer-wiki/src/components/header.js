@@ -29,7 +29,7 @@ function Header({
   tagsGroups,
   currentSlug,
 }) {
-  const { resolvedColorMode, setColorMode, theme } = useTheme();
+  const { theme, setColorMode, resolvedColorMode } = useTheme();
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useNavDrawerState(
     theme.breakpoints[2]
   );
@@ -38,6 +38,19 @@ function Header({
   const { siteMetadata } = useSiteMetadata();
   const themeConfig = useThemeConfig();
   const primerNavItems = themeConfig.nav;
+
+  function toggleTheme() {
+    const mode = resolvedColorMode === "day" ? "night" : "day"
+    setColorMode(mode)
+    localStorage.setItem("theme", mode)
+  }
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
   return (
     <Box top={0} zIndex={1} position="sticky">
       <Box
@@ -82,15 +95,50 @@ function Header({
         </Box>
         <Box display="flex">
           <Box display={["none", null, null, "flex"]} alignItems="center">
+            <Box display="flex" alignItems="center" color="header.text">
+              <Link
+                display="block"
+                color="inherit"
+                href=""
+                onClick={
+                  (e) => {
+                    e.preventDefault();
+                    fetch("/sitemap/sitemap-index.xml")
+                      .then(response => response.text())
+                      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+                      .then(function(doc) {
+                        const sitemaps = doc.getElementsByTagName("sitemapindex")[0].getElementsByTagName("sitemap");
+                        const sitemapNum = getRandomInt(0, sitemaps.length);
+                        const sitemapUrl = sitemaps[sitemapNum].getElementsByTagName("loc")[0].innerHTML;
+                        fetch(sitemapUrl)
+                          .then(response => response.text())
+                          .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+                          .then(function(doc) {
+                            const pageUrls = [].slice.call(doc.getElementsByTagName("urlset")[0].getElementsByTagName("url")).map((url) => url.getElementsByTagName("loc")[0].innerHTML).filter((url) => !url.startsWith("https://wiki.sunb.kr/tags/"));
+                            const pageUrlNum = getRandomInt(0, pageUrls.length);
+                            window.location.href = pageUrls[pageUrlNum];
+                          })
+                          .catch(function(error) {
+                            console.log(error);
+                          });
+                      })
+                      .catch(function(error) {
+                        console.log(error);
+                      });
+                  }
+                }
+              >
+                Random
+              </Link>
+            </Box>
+
             <PrimerNavItems items={primerNavItems} />
 
             <DarkButton
               aria-label="Theme"
               aria-expanded={isNavDrawerOpen}
-              onClick={() =>
-                setColorMode(resolvedColorMode === "day" ? "night" : "day")
-              }
-              ml={3}
+              onClick={toggleTheme}
+              ml={4}
             >
               {resolvedColorMode === "day" ? (
                 <SunIcon />

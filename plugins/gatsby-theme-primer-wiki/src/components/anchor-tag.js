@@ -8,7 +8,13 @@ import isRelativeUrl from "is-relative-url";
 import { ZapIcon } from "@primer/octicons-react";
 import { useTheme } from "@primer/components";
 import { encodeSlug } from "../utils/encode";
-// import './anchor-tag.css'
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+
+config.autoAddCss = false;
+
 const AnchorTag = ({
   title,
   href,
@@ -22,19 +28,14 @@ const AnchorTag = ({
   const ref = references.find(
     (x) => x.fields.slug === href || encodeSlug(x.fields.slug) === href
   );
-  // console.log("ref", href, ref, references);
 
   let instance = null;
   const onCreate = (theInstance) => {
     instance = theInstance;
   };
+  const show = () => { if (instance) { instance.show(); } };
   let popupContent;
   let child;
-  const show = () => {
-    if (instance) {
-      instance.show();
-    }
-  };
 
   if (ref) {
     const nestedComponents = {
@@ -79,11 +80,6 @@ const AnchorTag = ({
         {...restProps}
       >
         <Link
-          sx={{
-            ":hover": {
-              textDecoration: "none",
-            },
-          }}
           as={GatsbyLink}
           to={href}
           title={title}
@@ -99,7 +95,7 @@ const AnchorTag = ({
           pb="1"
           ml="1"
           mr="1"
-          onClick={show}
+          onFocus={show}
         >
           <ZapIcon size="14"></ZapIcon>
         </Button>
@@ -113,13 +109,20 @@ const AnchorTag = ({
     child = externalLink ? (
       <Link
         {...restProps}
+        display="inline-block"
         target="_blank"
         // Add noopener and noreferrer for security reasons
         rel="noopener noreferrer"
         href={href}
         title={title}
+        sx={{ lineHeight: restProps.fontSize }}
       >
-        <i className="fas fa-external-link-alt"></i>{restProps.children}
+        <Text fontSize="10px" marginRight="4px" sx={{ verticalAlign: "middle" }}>
+          <FontAwesomeIcon icon={faExternalLinkAlt} />
+        </Text>
+        <Text>
+          {restProps.children}
+        </Text>
       </Link>
     ) : (
       <Link {...restProps} as={GatsbyLink} to={href} title={title}>
@@ -134,21 +137,23 @@ const AnchorTag = ({
   }
 
   return (
-    <Tippy
-      theme={colorMode === "night" ? "dark" : "light"}
-      delay={100}
-      interactiveDebounce={0}
-      interactive={true}
-      animation="shift-away"
-      content={popupContent}
-      maxWidth="none"
-      arrow={false}
-      placement="bottom"
-      touch={["hold", 5000]}
-      onCreate={onCreate}
-    >
-      {child}
-    </Tippy>
+    <span>
+      <Tippy
+        theme={colorMode === "night" ? "dark" : "light"}
+        delay={100}
+        interactiveDebounce={0}
+        interactive={true}
+        animation="shift-away"
+        content={popupContent}
+        maxWidth="none"
+        arrow={false}
+        placement="bottom"
+        touch={["hold", 5000]}
+        onCreate={onCreate}
+      >
+        {child}
+      </Tippy>
+    </span>
   );
 };
 export default AnchorTag;

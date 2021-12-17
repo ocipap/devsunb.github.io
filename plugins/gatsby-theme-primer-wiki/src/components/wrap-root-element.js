@@ -2,7 +2,7 @@ import "tippy.js/dist/tippy.css"; // optional
 import "tippy.js/themes/light.css";
 import { MDXProvider } from "@mdx-js/react";
 import { theme, ThemeProvider } from "@primer/components";
-import React from "react";
+import React, { useState } from "react";
 import components from "./mdx-components";
 import deepmerge from "deepmerge";
 import useThemeConfig from "../use-theme-config";
@@ -30,11 +30,24 @@ const customTheme = deepmerge(theme, {
 });
 const finalTheme = deepmerge(customTheme, userTheme);
 const Provider = (props) => {
+  const [loaded, setLoaded] = useState();
   const themeConfig = useThemeConfig();
-  return (
-    <ThemeProvider theme={finalTheme} colorMode={themeConfig.defaultColorMode}>
+  const [mode, setMode] = useState(themeConfig.defaultColorMode);
+
+  React.useLayoutEffect(() => {
+    const newMode = localStorage.getItem("theme");
+    if (newMode) {
+      setMode(newMode);
+    }
+    setLoaded(true);
+  }, [setMode, setLoaded]);
+
+  return loaded ? (
+    <ThemeProvider theme={finalTheme} colorMode={mode}>
       <MDXProvider components={components}>{props.children}</MDXProvider>
     </ThemeProvider>
+  ) : (
+    <></>
   );
 };
 function WrapRootElement({ element }) {
@@ -42,3 +55,4 @@ function WrapRootElement({ element }) {
 }
 
 export default WrapRootElement;
+

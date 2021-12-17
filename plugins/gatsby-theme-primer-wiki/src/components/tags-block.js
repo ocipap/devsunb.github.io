@@ -44,16 +44,14 @@ const TagsBlock = ({ tags, nodes }) => {
               ),
             },
           ];
-
           return (
             <ReferenceLi key={tag}>
               <components.a
+                title={`#${tag}`}
                 href={`/tags/${kebabCase(tag)}/`}
                 references={references}
                 mr={3}
-              >
-                #{tag}
-              </components.a>
+              ></components.a>
             </ReferenceLi>
           );
         })}

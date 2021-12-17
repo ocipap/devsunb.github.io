@@ -12,17 +12,39 @@ import TableOfContents from "./table-of-contents";
 import TagsBlock from "./tags-block";
 import { getSidebarItems } from "../utils/sidebar-items";
 import useThemeConfig from "../use-theme-config";
+import { useTheme } from "@primer/components";
+import Utterances from "./utterances";
+import TagPosts from "./tag-posts";
 
-function TagsList({ type = "normal", title, url, items, depth = 0 }) {
+function TagsList({ type = "normal", title, url, body, items, depth = 0 }) {
   items = items || [];
+  const nodes = items.map((item) => {
+    return {
+      fields: {
+        title: item.title,
+        slug: item.url,
+        lastUpdated: item.lastUpdated,
+        shouldShowLastUpdated: type !== "tag",
+      },
+      body: item.body,
+      frontmatter: {},
+    }
+  });
+  const ref = {
+    fields: {
+      title,
+      shouldShowTitle: type !== "tag",
+      slug: url,
+    },
+    component: type === "tag" ? (<TagPosts nodes={nodes} tag={title} forceMobile shouldShowInstantView></TagPosts>) : undefined,
+    body: type === "tag" ? undefined : body,
+  }
   return (
     <li>
-      <components.a href={url}>
-        {type === "tag" ? `#${title}` : title}
-      </components.a>
+      <components.a title={type === "tag" ? `#${title}` : title} href={url} references={[ref]}></components.a>
       {Array.isArray(items) && items.length > 0 ? (
         <components.ul>
-          {items.map((subItem, index) => (
+          {items.map((subItem, _) => (
             <TagsList key={subItem.title} depth={depth + 1} {...subItem} />
           ))}
         </components.ul>
@@ -30,12 +52,13 @@ function TagsList({ type = "normal", title, url, items, depth = 0 }) {
     </li>
   );
 }
+
 const Post = ({ data, pageContext, location }) => {
+  const { resolvedColorMode } = useTheme();
   const post = data.mdx;
   const tagsOutbound = data.tagsOutbound || {
     nodes: [],
   };
-
   const primerWikiThemeConfig = useThemeConfig();
   const sidebarItems = getSidebarItems(
     pageContext.sidebarItems,
@@ -52,7 +75,6 @@ const Post = ({ data, pageContext, location }) => {
     outboundReferences,
     excerpt,
   } = post;
-
   const {
     title,
     lastUpdatedAt,
@@ -61,9 +83,9 @@ const Post = ({ data, pageContext, location }) => {
     slug,
     url,
     editUrl,
+    blameUrl,
     shouldShowTitle,
   } = fields;
-
   const {
     date,
     description,
@@ -79,7 +101,6 @@ const Post = ({ data, pageContext, location }) => {
     : gitCreatedAt
     ? new Date(gitCreatedAt)
     : null;
-
   const postSeoData = {
     title,
     shouldShowTitle,
@@ -183,14 +204,14 @@ const Post = ({ data, pageContext, location }) => {
             primerWikiThemeConfig.shouldShowTagGroupsOnIndex &&
             sidebarItems.length > 0 && (
               <Box>
-                <components.h2>Tags</components.h2>
+                <components.h2>Sitemap</components.h2>
                 {tagsGroups.map((child) => {
                   return (
                     <components.ul key={child.title}>
                       <TagsList
+                        type={child.type}
                         title={child.title}
                         url={child.url}
-                        type={child.type}
                         items={child.items}
                       ></TagsList>
                     </components.ul>
@@ -203,10 +224,13 @@ const Post = ({ data, pageContext, location }) => {
             <TagsBlock tags={tags} nodes={tagsOutbound.nodes} />
           )}
 
-          <PageFooter editUrl={editUrl} lastUpdated={lastUpdated} />
+          <PageFooter editUrl={editUrl} blameUrl={blameUrl} lastUpdated={lastUpdated} />
+
+          <Utterances theme={resolvedColorMode === "night" ? "github-dark" : "github-light"} />
         </Box>
       </Box>
     </Layout>
   );
 };
+
 export default Post;

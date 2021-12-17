@@ -14,18 +14,18 @@ module.exports = {
   siteMetadata,
   pathPrefix,
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   plugins: [
-    { resolve: "gatsby-plugin-image" },
-    { resolve: "gatsby-plugin-sharp" },
-    { resolve: "gatsby-transformer-sharp" },
-    { resolve: "gatsby-plugin-fontawesome-css" },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
-        path: "./content",
+        path: path.resolve(__dirname, "content"),
       },
     },
     {
@@ -35,16 +35,16 @@ module.exports = {
         nav: [
           {
             title: "Latest",
-            url: `${siteUrl}/latest/`,
+            url: "/latest/",
           },
           {
             title: "GitHub",
             url: "https://github.com/devsunb/",
           },
         ],
-        defaultColorMode: "night",
+        blameUrl: "https://github.com/devsunb/devsunb.github.io/blame/main/",
+        editUrl: "https://github.com/devsunb/devsunb.github.io/edit/main/",
         editUrlText: "Edit",
-        editUrl: "https://github.com/devsunb/wiki/tree/main/",
         lastUpdatedTransformer: (isoString) => {
           const dateObj = new Date(isoString);
           const date = dateObj.toLocaleString("ko-KR", {
@@ -54,6 +54,11 @@ module.exports = {
           });
           return date;
         },
+        shouldSupportTags: true,
+        shouldShowTagGroupsOnIndex: true,
+        tagText: "All tags",
+        shouldSupportLatest: true,
+        shouldShowLatestOnIndex: true,
       },
     },
     {
@@ -68,13 +73,10 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-sitemap",
-    },
-    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: siteMetadata.siteUrl,
-        sitemap: `${siteMetadata.siteUrl}/sitemap/sitemap-index.xml`,
+        sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },

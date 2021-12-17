@@ -48,7 +48,7 @@ function Code({ className, children, live, noinline }) {
             mb={3}
             p={3}
             border={0}
-            style={{ ...style, overflow: "auto" }}
+            style={{ ...style, overflow: "auto", fontFamily: themeGet("fonts.normal") }}
             sx={{
               borderRadius: 2,
             }}
@@ -58,7 +58,6 @@ function Code({ className, children, live, noinline }) {
                 {line.map((token, key) => (
                   <Text
                     key={key}
-                    fontFamily={themeGet("fonts.mono")}
                     fontSize={1}
                     {...getTokenProps({ token, key })}
                   />
