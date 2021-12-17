@@ -5,7 +5,6 @@ const defaultOptions = (pluginOptions) => {
   const options = Object.assign(
     {
       nav: [],
-
       mdxOtherwiseConfigured: false, // advanced, use your own mdx plugin config, See https://github.com/theowenyoung/gatsby-theme-primer-wiki/blob/main/theme/gatsby-config.js#L31-L67
       remarkPlugins: [], // add gatsby-plugin-mdx remarkPlugins
       gatsbyRemarkPlugins: [], // add gatsby-plugin-mdx gatsbyRemarkPlugins

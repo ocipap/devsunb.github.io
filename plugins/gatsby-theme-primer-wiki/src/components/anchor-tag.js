@@ -10,8 +10,8 @@ import { useTheme } from "@primer/components";
 import { encodeSlug } from "../utils/encode";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 config.autoAddCss = false;
 
@@ -33,7 +33,11 @@ const AnchorTag = ({
   const onCreate = (theInstance) => {
     instance = theInstance;
   };
-  const show = () => { if (instance) { instance.show(); } };
+  const show = () => {
+    if (instance) {
+      instance.show();
+    }
+  };
   let popupContent;
   let child;
 
@@ -75,15 +79,8 @@ const AnchorTag = ({
       </Box>
     );
     child = (
-      <Text
-        data-test="ref-tag"
-        {...restProps}
-      >
-        <Link
-          as={GatsbyLink}
-          to={href}
-          title={title}
-        >
+      <Text data-test="ref-tag" {...restProps}>
+        <Link as={GatsbyLink} to={href} title={title}>
           {title || restProps.children}
         </Link>
 
@@ -102,27 +99,25 @@ const AnchorTag = ({
       </Text>
     );
   } else {
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
-    const externalLink =
-      !isRelativeUrl(href) || (restProps && restProps.target === "_blank");
-
-    child = externalLink ? (
+    const externalLink = !isRelativeUrl(href) || (restProps && restProps.target === "_blank");
+    child = externalLink && !href.startsWith("/") ? (
       <Link
         {...restProps}
         display="inline-block"
         target="_blank"
-        // Add noopener and noreferrer for security reasons
         rel="noopener noreferrer"
         href={href}
         title={title}
         sx={{ lineHeight: restProps.fontSize }}
       >
-        <Text fontSize="10px" marginRight="4px" sx={{ verticalAlign: "middle" }}>
+        <Text
+          fontSize="10px"
+          marginRight="4px"
+          sx={{ verticalAlign: "middle" }}
+        >
           <FontAwesomeIcon icon={faExternalLinkAlt} />
         </Text>
-        <Text>
-          {restProps.children}
-        </Text>
+        <Text>{restProps.children}</Text>
       </Link>
     ) : (
       <Link {...restProps} as={GatsbyLink} to={href} title={title}>

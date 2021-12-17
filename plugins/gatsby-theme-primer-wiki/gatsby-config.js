@@ -1,5 +1,5 @@
 const { defaultOptions } = require("./gatsby-util");
-const path = require("path");
+
 module.exports = (themeOptions) => {
   const {
     mdxOtherwiseConfigured,
@@ -17,7 +17,7 @@ module.exports = (themeOptions) => {
     "gatsby-transformer-summary",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`, // Needed for dynamic images
+    `gatsby-transformer-sharp`,
     `gatsby-remark-images`,
   ];
   if (!mdxOtherwiseConfigured) {
@@ -30,6 +30,16 @@ module.exports = (themeOptions) => {
           require("remark-unwrap-images"),
           ...remarkPlugins,
         ],
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: imageMaxWidth,
+              showCaptions: ["title", "alt"],
+              backgroundColor: "transparent",
+            },
+          },
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-rewrite-link-for-trailing-slash",
@@ -38,7 +48,6 @@ module.exports = (themeOptions) => {
               rewriteToParentUrlFileIgnore: rewriteToParentUrlFileIgnore,
             },
           },
-
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
@@ -56,6 +65,7 @@ module.exports = (themeOptions) => {
             options: {
               maxWidth: imageMaxWidth,
               showCaptions: ["title", "alt"],
+              backgroundColor: "transparent",
             },
           },
           {

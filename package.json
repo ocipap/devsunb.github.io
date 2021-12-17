@@ -7,11 +7,13 @@
     "email": "devsunb@gmail.com"
   },
   "scripts": {
+    "clean": "gatsby clean",
     "dev": "gatsby develop",
+    "cd": "yarn clean && yarn dev",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "bs": "yarn build && yarn serve",
-    "clean": "gatsby clean"
+    "cbs": "yarn clean && yarn build && yarn serve"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.14.5",
@@ -64,6 +66,7 @@
     "html-react-parser": "^1.2.8",
     "install": "^0.13.0",
     "is-relative-url": "^3.0.0",
+    "lodash": "^4.17.21",
     "lodash.debounce": "4.0.8",
     "note-graph": "^0.2.0",
     "npm": "^7.21.1",
