@@ -31,6 +31,7 @@ module.exports = (themeOptions) => {
           ...remarkPlugins,
         ],
         plugins: [
+          "gatsby-remark-mermaid",
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -84,6 +85,7 @@ module.exports = (themeOptions) => {
                 ]),
             },
           },
+          "gatsby-remark-mermaid",
           ...gatsbyRemarkPlugins,
         ],
       },

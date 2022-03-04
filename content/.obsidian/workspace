@@ -1,0 +1,136 @@
+{
+  "main": {
+    "id": "022f121fb4438cdc",
+    "type": "split",
+    "children": [
+      {
+        "id": "398cecad0b6bf863",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "2022-03-04.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fb65b2ca45cc7f8e",
+    "type": "split",
+    "children": [
+      {
+        "id": "5953709414dc54bf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b13daa68ff17199",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "80ea7e81d749adf9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 245
+  },
+  "right": {
+    "id": "f02661c16b4dd902",
+    "type": "split",
+    "children": [
+      {
+        "id": "66526eb3ebf31149",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c20b69845ade0f32",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2022-03-04.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "9315e1c215005abd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2022-03-04.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "a843665f975e31e3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "ecdb50aa55691a7e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2022-03-04.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 234
+  },
+  "active": "398cecad0b6bf863",
+  "lastOpenFiles": [
+    "2022-03-04.md",
+    "2022-03-02.md",
+    "2022-02-28.md",
+    "2022-02-25.md",
+    "2022-02-17.md",
+    "2022-02-16.md",
+    "Vim.md",
+    "LocalStack.md",
+    "AWS ElastiCache.md",
+    "Hammerspoon.md"
+  ]
+}

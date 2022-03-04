@@ -54,6 +54,7 @@
     "gatsby-remark-autolink-headers": "^4.9.0",
     "gatsby-remark-copy-linked-files": "^4.9.0",
     "gatsby-remark-images": "^5.9.0",
+    "gatsby-remark-mermaid": "^2.1.0",
     "gatsby-remark-obsidian": "^0.5.0",
     "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-remark-rewrite-link-for-trailing-slash": "^1.10.1",
